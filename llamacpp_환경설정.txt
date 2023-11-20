@@ -1,0 +1,35 @@
+conda create -n LLMACPP python=3.10.9
+
+conda activate LLAMACPP
+
+cd ..\..\LLAMACPP
+
+git clone https://github.com/ggerganov/llana.cpp.git
+
+cd llama.cpp
+
+pip install -r requirements.txt
+
+mkdir build
+
+cd build
+
+cmake .. -DLLAMA_CUBLAS=ON
+
+cmake --build . --config Release
+
+
+
+python convert-llama-ggml-to-gguf.py --in "Llama-2-ko-7b-ggml-q4_0.bin" --out "Llama-2-ko-7b-ggml-q4_0.gguf" -m medatada
+
+
+CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1 pip install llama-cpp-python --force-reinstall --upgrade --no-cache-dir --verbose
+
+
+
+https://medium.com/@piyushbatra1999/installing-llama-cpp-python-with-nvidia-gpu-acceleration-on-windows-a-short-guide-0dfac475002d
+
+
+https://github.com/ggerganov/llama.cpp#cublas
+
+https://github.com/davidkim205/komt

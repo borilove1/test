@@ -1,0 +1,5 @@
+## ko-sbert-nli 다운로드
+git clone https://huggingface.co/jhgan/ko-sbert-nli ./models
+
+## komt-mistral-7b-v1-ggug 다운로드
+git clone https://huggingface.co/davidkim205/komt-mistral-7b-v1-gguf ./models
