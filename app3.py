@@ -22,7 +22,7 @@ class StreamHandler(BaseCallbackHandler): ## streamlit data streaming 클래스
 
 callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
         
-# @st.cache_resource(show_spinner = False)
+@st.cache_resource(show_spinner = False)
 def load_model(): ## llm 불러오기
     MODEL_PATH = "./models/komt-mistral-7b-v1-q4_0.gguf"
     llm = LlamaCpp(        
@@ -38,7 +38,7 @@ def load_model(): ## llm 불러오기
     )
     return llm
 
-# @st.cache_resource(show_spinner = False)
+@st.cache_resource(show_spinner = False)
 def model_memory(): ## 프롬프트 템플릿
     template = """아래 주어진 문맥에 해당하는 내용을 친절하게 답변하시오.
     문맥 : {context}
@@ -48,7 +48,7 @@ def model_memory(): ## 프롬프트 템플릿
 
     return prompt
 
-# @st.cache_resource(show_spinner = False)
+@st.cache_resource(show_spinner = False)
 def get_vectorstore(): ## 임베딩 데이터 불러오기(크로마db)
     model_name = "./models/ko-sbert-nli"
     EMBEDDINGS = HuggingFaceEmbeddings(model_name=model_name,
@@ -61,7 +61,7 @@ def get_vectorstore(): ## 임베딩 데이터 불러오기(크로마db)
     vectorstore = DB_Chroma.as_retriever(search_kwargs = {'k':1})
     return vectorstore
 
-# @st.cache_resource(show_spinner = False)
+@st.cache_resource(show_spinner = False)
 def qa_retriever(): ## qa retriever
     prompt = model_memory()
     QA = RetrievalQA.from_chain_type(
